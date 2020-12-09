@@ -10,12 +10,18 @@ export class BookDetailsModalComponent implements OnInit {
   @Input() book: any;
 
   selectedAuthor: string;
+  title: string;
+  oldAuthor: string;
+  description: string;
 
   @Input() authorsList: string[];
   @Output() closeModal = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     this.selectedAuthor = this.book.author;
+    this.title = this.book.title;
+    this.description = this.book.description;
+    this.oldAuthor = this.book.author;
   }
   deleteBook(): void {
     this.firestore
@@ -27,6 +33,26 @@ export class BookDetailsModalComponent implements OnInit {
             item.ref.delete().then((res) => {
               this.closeModalplease();
             });
+          }
+        });
+      });
+  }
+  updateBook(): void {
+    this.firestore
+      .collection('books')
+      .get()
+      .subscribe((res) => {
+        res.docs.forEach((item) => {
+          if ((item as any).data().title === this.book.title) {
+            item.ref
+              .update({
+                title: this.title,
+                athor: this.selectedAuthor,
+                description: this.description,
+              })
+              .then((res) => {
+                this.closeModalplease();
+              });
           }
         });
       });

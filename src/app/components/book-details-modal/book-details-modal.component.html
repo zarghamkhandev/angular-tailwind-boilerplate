@@ -16,7 +16,7 @@
         placeholder="Title"
         name="title"
         class="w-72 py-2 px-2 rounded bg-gray-200"
-        [(ngModel)]="book.title"
+        [(ngModel)]="title"
       />
       <select
         class="w-72 py-2 px-2 rounded bg-gray-200 mt-2 text-gray-600"
@@ -27,7 +27,7 @@
         </option>
       </select>
       <textarea
-        [(ngModel)]="book.description"
+        [(ngModel)]="description"
         class="w-full py-2 px-2 rounded bg-gray-200 mt-2 h-48"
       ></textarea>
       <div class="w-full flex justify-end">
@@ -45,6 +45,7 @@
         </div>
         <div
           class="bg-blue-500 ml-2 cursor-pointer text-white font-medium px-2 py-2 rounded shadow-sm hover:shadow-md w-28 flex justify-center"
+          (click)="updateBook()"
         >
           Save
         </div>
