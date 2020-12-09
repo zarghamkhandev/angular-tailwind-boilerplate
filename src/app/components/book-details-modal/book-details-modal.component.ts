@@ -47,7 +47,7 @@ export class BookDetailsModalComponent implements OnInit {
             item.ref
               .update({
                 title: this.title,
-                athor: this.selectedAuthor,
+                author: this.selectedAuthor,
                 description: this.description,
               })
               .then((res) => {
